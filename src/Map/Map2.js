@@ -2,14 +2,19 @@ import {collection, doc, getDocs} from 'firebase/firestore';
 import {db} from '../firebase'
 import React, {useEffect ,useState} from "react";
 import Mapprops from './Mapprops';
+import geocoder from 'react-geocode';
 const { kakao } = window;
 
 
 const Map2 =() =>{
 
   const [coords, setCoords]=useState([]);
+
   
+ 
   const userCollectionRef = collection(db,"users");
+
+  //주소 이동 함수 
 
 
   // firestore  api 가져오기 
@@ -18,7 +23,20 @@ const Map2 =() =>{
     setCoords(data.docs.map((doc)=>({...doc.data(),id:doc.id})))
       
   }
-  
+  let addressname;
+  // 좌표로 위치 구하기 
+  function getAddr(lats,lons){
+    let geocoder = new kakao.maps.services.Geocoder();
+    let coord = new kakao.maps.LatLng(lats,lons);
+    let callback = function(result,status){
+      if(status === kakao.maps.services.Status.OK){
+        console.log(result)
+        console.log(result[0].address.address_name);
+        addressname = result[0].address.address_name;
+      }
+    }
+    geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+  }
    var lats = null;
    var lons = null;
   useEffect(()=>{
@@ -33,17 +51,22 @@ const Map2 =() =>{
 
         const map = new kakao.maps.Map(container, options);
 
+        // 스카이뷰및 컨트롤러 
+        const mapTypeControl = new kakao.maps.MapTypeControl();
+        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+        const zoomControl = new kakao.maps.ZoomControl();
+        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
         // 내 위치 찾기 
         if(navigator.geolocation){
           navigator.geolocation.getCurrentPosition((position)=>{
               var lat = position.coords.latitude;
               var lon = position.coords.longitude;
+             
               
-              console.log(lon);
-              console.log("lon")
-              console.log(lat);
+          
               var locPosition = new kakao.maps.LatLng(lat,lon);
-              var message ='<div style="padding:5px>내위치</div>';
+              var message ='<div style="padding:5px">내위치</div>';
               var marker = new kakao.maps.Marker({
                 map: map,
                 position: locPosition
@@ -82,7 +105,7 @@ const Map2 =() =>{
       // 나머지 좌표 찍기 
       if(coords.length != 0)
       { console.log(coords)
-        for(let i=0 ; i<= coords.length -1; i++ ){
+        for(let i=0 ; i<= coords.length-1 ; i++ ){
           let a = coords[i]
           console.log(a.lat)
           console.log(a.lon)
@@ -94,6 +117,15 @@ const Map2 =() =>{
           marker.setMap(map);
           console.log("setup 완료 ")
 
+
+          var iwContent = '<div style=" text-align: center; ">길찾기</div>'
+          var infowindow = new kakao.maps.InfoWindow({
+            position: markerPosition,
+            content: iwContent
+          })
+          infowindow.open(map,marker)
+
+          
           //클릭 이벤트
           kakao.maps.event.addListener(marker,'click', () =>{
             console.log("클릭시 lat lon")
@@ -101,25 +133,18 @@ const Map2 =() =>{
             console.log(a.lon)
             lats = a.lat;
             lons= a.lon;
+            getAddr(lats,lons)
+
             if(lats != null && lons !=null){
-              var iwContent = '<div style="padding:5px;">길찾기<br><a herf></a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-              iwPosition = new kakao.maps.LatLng(lats, lons), //인포윈도우 표시 위치입니다
-              iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-    
-              // 인포윈도우를 생성하고 지도에 표시합니다
-              var infowindow = new kakao.maps.InfoWindow({
-              map: map, // 인포윈도우가 표시될 지도
-              position : iwPosition, 
-              content : iwContent,
-              removable : iwRemoveable
-              });
+
+              window.open("https://map.kakao.com/link/to/"+addressname+","+lats+","+lons)
     
             }
             
           })
         }
       }
-  })
+  },)
 
   useEffect(()=>{
     getUsers();
@@ -127,10 +152,6 @@ const Map2 =() =>{
   },[])
 
 
-  
-
-    
-     
     
       return (
         <div>
