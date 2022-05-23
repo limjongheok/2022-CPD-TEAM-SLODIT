@@ -1,14 +1,25 @@
-import React, { useEffect } from "react";
+import React from 'react';
+import {useMediaQuery} from 'react-responsive'
+import styles from './Map.module.css'
 
 function Mapprops(lat,lon){
 
 
+    const iscMobile = useMediaQuery({
+        query: "(max-width: 767px)"
+    })
 
 
     return(
-        <div style={{width :'50hw', height : '50hw'}}>
-            <h2>거리</h2>
+        <div>
+            {iscMobile &&
+             <div>
+                 
+             </div>
+             }
         </div>
+
+        
         
     )
 

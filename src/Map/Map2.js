@@ -10,6 +10,7 @@ const Map2 =() =>{
 
   const [coords, setCoords]=useState([]);
 
+  const[ctaddress, setCtaddress]= useState("");
   
  
   const userCollectionRef = collection(db,"users");
@@ -23,6 +24,12 @@ const Map2 =() =>{
     setCoords(data.docs.map((doc)=>({...doc.data(),id:doc.id})))
       
   }
+
+
+  
+
+  
+
   let addressname;
   // 좌표로 위치 구하기 
   function getAddr(lats,lons){
@@ -39,6 +46,18 @@ const Map2 =() =>{
   }
    var lats = null;
    var lons = null;
+   var centerlat ; //중앙 좌표
+   var centerlon ;
+   var a ;
+
+   //클릭시 중심 좌표로 이동
+   function centermove(centerlat,centerlon){
+
+    var moveLatLon = new kakao.maps.LatLng(centerlat,centerlon)
+    a.panTo(moveLatLon);   
+    
+   }
+
   useEffect(()=>{
     //처음 map 그리기 
     // id 정의 및 div id 로  그리기 
@@ -51,6 +70,9 @@ const Map2 =() =>{
 
         const map = new kakao.maps.Map(container, options);
 
+        a=map;
+        
+
         // 스카이뷰및 컨트롤러 
         const mapTypeControl = new kakao.maps.MapTypeControl();
         map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
@@ -62,6 +84,8 @@ const Map2 =() =>{
           navigator.geolocation.getCurrentPosition((position)=>{
               var lat = position.coords.latitude;
               var lon = position.coords.longitude;
+              centerlat =lat;
+              centerlon = lon;
              
               
           
@@ -102,6 +126,12 @@ const Map2 =() =>{
     
       }
 
+      //중심 좌표 받아오기 
+      
+
+      //중심 좌표 얻어서 표시 
+    
+
       // 나머지 좌표 찍기 
       if(coords.length != 0)
       { console.log(coords)
@@ -118,7 +148,7 @@ const Map2 =() =>{
           console.log("setup 완료 ")
 
 
-          var iwContent = '<div style=" text-align: center; ">길찾기</div>'
+          var iwContent = '<div style="padding: 5px">길찾기</div>'
           var infowindow = new kakao.maps.InfoWindow({
             position: markerPosition,
             content: iwContent
@@ -157,7 +187,10 @@ const Map2 =() =>{
         <div>
           <div id="map" style={{width:'100vw' , height : 
         '100vh', zIndex: 1}}></div>
+        
+        <button onClick={()=> centermove(centerlat,centerlon)} style={{zIndex:"100" , position:"absolute", bottom:"5%" ,left:"50%",transform:"translate(-50%)"}}>중앙으로 이동하기</button>
         </div>
+        
       );
 }
 export default Map2;
