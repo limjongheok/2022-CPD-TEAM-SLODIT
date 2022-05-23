@@ -1,7 +1,6 @@
 import {collection, doc, getDocs} from 'firebase/firestore';
 import {db} from '../firebase'
 import React, {useEffect ,useState} from "react";
-import Mapprops from './Mapprops';
 import geocoder from 'react-geocode';
 const { kakao } = window;
 
