@@ -138,6 +138,7 @@ const Map2 =() =>{
           let a = coords[i]
           console.log(a.lat)
           console.log(a.lon)
+          console.log(a.id)
 
           var markerPosition = new kakao.maps.LatLng(a.lat, a.lon);
           var marker = new kakao.maps.Marker({
@@ -147,7 +148,7 @@ const Map2 =() =>{
           console.log("setup 완료 ")
 
 
-          var iwContent = '<div style="padding: 5px">길찾기</div>'
+          var iwContent = '<div style="padding: 5px">'+a.id+'</div>'
           var infowindow = new kakao.maps.InfoWindow({
             position: markerPosition,
             content: iwContent
