@@ -1,0 +1,49 @@
+.Header_main {
+    position: relative;
+    display:block;
+    height: 10vh;
+    width: 100%;
+}
+.Header_line {
+    position: absolute;
+    border-bottom: 2px solid;
+    width: 100%;
+    bottom: 0;
+    
+    
+}
+.Headers {
+    position: absolute;
+    font-weight:bolder;
+   
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    
+}
+
+.Header_log {
+    
+    position: absolute;
+    left: 2.8%;
+    top: 50%;
+    transform: translate(0,-50%);
+    
+    
+    
+}
+
+.Header_button {
+  
+    position: absolute;
+    font-weight: bold;
+    right: 2.8%;
+    top: 50%;
+    transform: translate(0,-50%);
+    width: 10%;
+    border: 1px;
+    border-radius: 10px;
+    background-color: #4B89DC;
+}
+
+

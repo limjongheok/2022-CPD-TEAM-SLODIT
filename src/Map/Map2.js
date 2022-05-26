@@ -2,6 +2,7 @@ import {collection, doc, getDocs} from 'firebase/firestore';
 import {db} from '../firebase'
 import React, {useEffect ,useState} from "react";
 import geocoder from 'react-geocode';
+import Header from '../Header/Header'
 const { kakao } = window;
 
 
@@ -86,8 +87,6 @@ const Map2 =() =>{
               centerlat =lat;
               centerlon = lon;
              
-              
-          
               var locPosition = new kakao.maps.LatLng(lat,lon);
               var message ='<div style="padding:5px">내위치</div>';
               var marker = new kakao.maps.Marker({
@@ -185,10 +184,10 @@ const Map2 =() =>{
     
       return (
         <div>
+          <Header />
           <div id="map" style={{width:'100vw' , height : 
-        '100vh', zIndex: 1}}></div>
-        
-        <button onClick={()=> centermove(centerlat,centerlon)} style={{zIndex:"100" , position:"absolute", bottom:"5%" ,left:"50%",transform:"translate(-50%)"}}>내위치로 이동하기</button>
+        '90vh', zIndex: 1}}></div>
+        <button onClick={()=> centermove(centerlat,centerlon)} style={{zIndex:"100" , position:"absolute", bottom:"5%" ,left:"50%",transform:"translate(-50%)" , borderRadius: "10px", height:"8%", border:"none", backgroundColor:'white'}}><div style={{color:"#4B89DC",fontWeight:"bold"}}>내위치로 이동하기</div></button>
         </div>
         
       );
