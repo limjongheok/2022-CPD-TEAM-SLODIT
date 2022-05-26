@@ -13,7 +13,7 @@ const Map2 =() =>{
   const[ctaddress, setCtaddress]= useState("");
   
  
-  const userCollectionRef = collection(db,"users");
+  const userCollectionRef = collection(db,"userss");
 
   //주소 이동 함수 
 
@@ -187,7 +187,7 @@ const Map2 =() =>{
           <Header />
           <div id="map" style={{width:'100vw' , height : 
         '90vh', zIndex: 1}}></div>
-        <button onClick={()=> centermove(centerlat,centerlon)} style={{zIndex:"100" , position:"absolute", bottom:"5%" ,left:"50%",transform:"translate(-50%)" , borderRadius: "10px", height:"8%", border:"none", backgroundColor:'white'}}><div style={{color:"#4B89DC",fontWeight:"bold"}}>내위치로 이동하기</div></button>
+        <button onClick={()=> centermove(centerlat,centerlon)} style={{zIndex:"100" , position:"absolute", bottom:"5%" ,left:"50%",transform:"translate(-50%)" , borderRadius: "30px", height:"8%", border:"none", backgroundColor:'white'}}><div style={{color:"#4B89DC",fontWeight:"bold"}}>내위치로 이동하기</div></button>
         </div>
         
       );

@@ -25,8 +25,8 @@
 .Header_log {
     
     position: absolute;
-    left: 2.8%;
-    top: 50%;
+    left: 5%;
+    top: 52%;
     transform: translate(0,-50%);
     
     
@@ -37,13 +37,20 @@
   
     position: absolute;
     font-weight: bold;
+    height: 50%;
     right: 2.8%;
-    top: 50%;
+    top: 55%;
     transform: translate(0,-50%);
     width: 10%;
     border: 1px;
+    text-align: center;
     border-radius: 10px;
     background-color: #4B89DC;
 }
 
+.Header_button_font {
+    font-weight: bold;
+    text-align: center;
+    
+}
 
