@@ -184,7 +184,7 @@ const Map2 =() =>{
     
       return (
         <div>
-          <Header />
+          <Header style={{position: 'fixed'}}/>
           <div id="map" style={{width:'100vw' , height : 
         '90vh', zIndex: 1}}></div>
         <button onClick={()=> centermove(centerlat,centerlon)} style={{zIndex:"100" , position:"absolute", bottom:"5%" ,left:"50%",transform:"translate(-50%)" , borderRadius: "30px", height:"8%", border:"none", backgroundColor:'white'}}><div style={{color:"#4B89DC",fontWeight:"bold"}}>내위치로 이동하기</div></button>
