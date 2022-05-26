@@ -11,7 +11,7 @@ const Header = () =>{
                 <div className="Header_line"></div>   
                 <div className="Headers" >SLOWDIT</div>
                 <img  src={require('./slowditicon.png')} alt="log" className="Header_log" />
-                <button className="Header_button"><div className="Header_button_font">App</div></button>
+                <button className="Header_button">App</button>
             </div>
         </div>
         

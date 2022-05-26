@@ -13,7 +13,7 @@ const Map2 =() =>{
   const[ctaddress, setCtaddress]= useState("");
   
  
-  const userCollectionRef = collection(db,"users");
+  const userCollectionRef = collection(db,"userss");
 
   //주소 이동 함수 
 

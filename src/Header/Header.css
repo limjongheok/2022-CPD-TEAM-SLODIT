@@ -36,7 +36,7 @@
 .Header_button {
   
     position: absolute;
-    font-weight: bold;
+    
     height: 50%;
     right: 2.8%;
     top: 55%;
@@ -46,13 +46,40 @@
     text-align: center;
     border-radius: 10px;
     background-color: #4B89DC;
-}
-
-.Header_button_font {
     font-weight: bold;
-    text-align: center;
     color: black;
-    width: 100%;
+    font-size: 10%;
     
 }
 
+.Header_button_font {
+    
+    text-align: center;
+    
+    width: 100%;
+    
+    
+}
+
+
+@media (min-width:196px) and (max-width:767px) {
+    .Header_button {
+  
+        position: absolute;
+        
+        height: 50%;
+        right: 2.8%;
+        top: 55%;
+        transform: translate(0,-50%);
+        width: 15%;
+        border: 1px;
+        text-align: center;
+        border-radius: 10px;
+        background-color: #4B89DC;
+        font-weight: bold;
+        color: black;
+        font-size: 10%;
+        
+    }
+    
+}
