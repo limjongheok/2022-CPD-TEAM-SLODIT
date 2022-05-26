@@ -51,6 +51,8 @@
 .Header_button_font {
     font-weight: bold;
     text-align: center;
+    color: black;
+    width: 100%;
     
 }
 
