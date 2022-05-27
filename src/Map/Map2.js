@@ -90,7 +90,7 @@ const Map2 =() =>{
               // 내 위치 이미지 마커 
               var imageSrc = require('./slowditmyloc.png')
               var imageSize = new kakao.maps.Size(30, 30); // 마커이미지의 크기입니다
-              var imageOption = {offset: new kakao.maps.Point(27, 5)}; 
+              var imageOption = {offset: new kakao.maps.Point(23, 0)}; 
               var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
               
               var locPosition = new kakao.maps.LatLng(lat,lon);
@@ -145,7 +145,7 @@ const Map2 =() =>{
           var markerPosition = new kakao.maps.LatLng(a.lat, a.lon);
 
           var imageSrc = require('./slowditcostomimg.png')
-          var imageSize = new kakao.maps.Size(30,30);
+          var imageSize = new kakao.maps.Size(35,35);
           var imageOption = {offset: new kakao.maps.Point(26,30)}
           var markerImage = new kakao.maps.MarkerImage(imageSrc,imageSize, imageOption)
           var marker = new kakao.maps.Marker({
@@ -158,12 +158,6 @@ const Map2 =() =>{
           console.log("setup 완료 ")
 
 
-          var iwContent = '<div style="padding: 5px">'+a.id+'</div>'
-          var infowindow = new kakao.maps.InfoWindow({
-            position: markerPosition,
-            content: iwContent
-          })
-          infowindow.open(map,marker)
 
           
           //클릭 이벤트
