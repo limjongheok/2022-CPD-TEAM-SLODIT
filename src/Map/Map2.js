@@ -145,8 +145,8 @@ const Map2 =() =>{
           var markerPosition = new kakao.maps.LatLng(a.lat, a.lon);
 
           var imageSrc = require('./slowditcostomimg.png')
-          var imageSize = new kakao.maps.Size(35,35);
-          var imageOption = {offset: new kakao.maps.Point(26,30)}
+          var imageSize = new kakao.maps.Size(35,49);
+          var imageOption = {offset: new kakao.maps.Point(20,49)}
           var markerImage = new kakao.maps.MarkerImage(imageSrc,imageSize, imageOption)
           var marker = new kakao.maps.Marker({
             position: markerPosition,
