@@ -96,12 +96,12 @@ const Map2 =() =>{
               var locPosition = new kakao.maps.LatLng(lat,lon);
         
               var marker = new kakao.maps.Marker({
-                map: map,
+          
                 position: locPosition,
                 image: markerImage
             });
            
-            
+            marker.setMap(map)
     
             map.setCenter(locPosition)
           })
