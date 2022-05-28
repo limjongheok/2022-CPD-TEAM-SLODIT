@@ -1,0 +1,42 @@
+.splashimg{
+  position: relative;
+    height: 100vh;
+    background: center;
+    background-image: url('./slowditdesktop.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+.splashfont{
+  position: absolute;
+  color: white;
+  font-weight: inherit;
+  top: 20%;
+  left: 30%;
+  transform: translate(-50%);
+  font-size: 35px;
+  font-weight: bold;
+  border-bottom: solid white;
+  padding: 5px;
+}
+
+@media (min-width:196px) and (max-width:767px) {
+  .splashimg{
+    position: relative;
+    height: 100vh;
+    background: center;
+    background-image: url('./slowditmain.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .splashfont{
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 20px;
+  }
+  
+}
