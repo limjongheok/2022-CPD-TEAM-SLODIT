@@ -37,12 +37,12 @@
 .nearpointbutton{
     z-index: 100;
     position: absolute;
-    top: 11%;
+    top: 13%;
     left:0.2%;
     border-radius: 10px;
     border: none;
     background-color: #4B89DC;
-    height: 5.4%;
+    height: 8%;
 }
 .centerpoint{
     z-index: 100;
@@ -63,4 +63,18 @@
     color: rgb(255, 255, 255);
     font-weight: bold;
    
+}
+
+@media (min-width:196px) and (max-width:767px) {
+    .nearpointbutton{
+        z-index: 100;
+        position: absolute;
+        top: 18%;
+        left:0.2%;
+        border-radius: 10px;
+        border: none;
+        background-color: #4B89DC;
+        height: 8%;
+    }
+    
 }
