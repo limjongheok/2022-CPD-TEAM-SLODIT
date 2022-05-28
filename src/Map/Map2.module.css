@@ -1,0 +1,66 @@
+.Maps {
+    position:absolute;
+}
+
+.Maplistdiv{
+
+    position: absolute;
+    z-index: 100;
+    top: 10% ;
+    background-color : rgba(255, 255, 255, 0.5);
+    
+}
+.Map2listfont {
+
+    text-align: center;
+    margin: 10px;
+    font-weight: bold;
+    border-bottom: 2px solid;
+}
+.Map2ul {
+    list-style: none ; 
+    font-size: 13px;
+    color: black;
+    padding: 0;
+    margin: 10px;
+    text-align: center;
+}
+.Map2li{
+    margin: 5px;
+    padding: 2px;
+    border-bottom: 1px solid;
+}
+.Map2lilast{
+    padding: 2px;
+    border-bottom: 1px solid;
+}
+.nearpointbutton{
+    z-index: 100;
+    position: absolute;
+    top: 10.5%;
+    left:0.2%;
+    border-radius: 10px;
+    border: none;
+    background-color: #4B89DC;
+    height: 5.4%;
+}
+.centerpoint{
+    z-index: 100;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 30px;
+    height: 8%;
+    border: none;
+    background-color: rgb(255, 255, 255);
+}
+.buttonfont{
+    color: #4B89DC;
+    font-weight: bold;
+}
+.buttonfontnear{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 20%;
+}

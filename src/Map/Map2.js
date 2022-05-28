@@ -1,7 +1,7 @@
 import {collection, doc, getDocs} from 'firebase/firestore';
 import {db} from '../firebase'
 import React, {useEffect ,useState} from "react";
-import geocoder from 'react-geocode';
+import styles from './Map2.module.css';
 import Header from '../Header/Header'
 const { kakao } = window;
 
@@ -10,7 +10,7 @@ const Map2 =() =>{
 
   const [coords, setCoords]=useState([]);
 
-  const[ctaddress, setCtaddress]= useState("");
+  
   
  
   const userCollectionRef = collection(db,"users");
@@ -44,11 +44,16 @@ const Map2 =() =>{
     }
     geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
   }
-   var lats = null;
+   var lats = null; //클릭시 카카오 맵 이동시 필요
    var lons = null;
-   var centerlat ; //중앙 좌표
-   var centerlon ;
-   var a ;
+   let centerlat; //중앙 좌표 내위치로 이동시 필요
+   var centerlon;
+   var a ; //카카오map
+   var list = []; // 장소 거리를 담을 리스트
+   let nearlat; // 가장 근처 위도 경도
+   let nearlon;
+   
+   
 
    //클릭시 중심 좌표로 이동
    function centermove(centerlat,centerlon){
@@ -56,6 +61,11 @@ const Map2 =() =>{
     var moveLatLon = new kakao.maps.LatLng(centerlat,centerlon)
     a.panTo(moveLatLon);   
     
+   }
+   function nearpoint(nearlat, nearlon){
+     var moveLatLon = new kakao.maps.LatLng(nearlat,nearlon)
+     a.panTo(moveLatLon)
+
    }
 
   useEffect(()=>{
@@ -84,7 +94,7 @@ const Map2 =() =>{
           navigator.geolocation.getCurrentPosition((position)=>{
               var lat = position.coords.latitude;
               var lon = position.coords.longitude;
-              centerlat =lat;
+              centerlat = lat;
               centerlon = lon;
 
               // 내 위치 이미지 마커 
@@ -106,8 +116,87 @@ const Map2 =() =>{
             marker.setMap(map)
     
             map.setCenter(locPosition)
-          })
-      }else{
+
+        // 나머지 좌표 찍기 
+        if(coords.length != 0)
+        { console.log(coords)
+          for(let i=0 ; i<= coords.length-1 ; i++ ){
+            let a = coords[i]
+            console.log(a.lat,a.lon , "나머지 좌표 위도 , 경도")
+            console.log(a.id ,"지역")
+
+            var markerPosition = new kakao.maps.LatLng(a.lat, a.lon);
+
+            var imageSrc = require('./slowditcostomimg.png')
+            var imageSize = new kakao.maps.Size(35,49);
+            var imageOption = {offset: new kakao.maps.Point(20,49)}
+            var markerImage = new kakao.maps.MarkerImage(imageSrc,imageSize, imageOption)
+            var marker = new kakao.maps.Marker({
+              position: markerPosition,
+              image: markerImage,
+              yAnchor : 1
+          
+            });
+            marker.setMap(map);
+        
+
+            //폴리 라인 그리기 
+            var polyline = new kakao.maps.Polyline({
+          
+              map: map,
+              path:[
+              
+                new kakao.maps.LatLng(lat,lon),
+                new kakao.maps.LatLng(a.lat,a.lon)
+              ],
+            
+
+            });
+            polyline.setMap(null);
+            var distance = polyline.getLength();
+            console.log(distance,"distance");
+
+            console.log(centerlat,"중앙좌표")
+            ////폴리라인 그리기 끝 
+
+            console.log("setup 완료 ")
+            list.push({distance : distance , lat: a.lat, lon: a.lon})
+          
+
+
+          
+            //클릭 이벤트
+            kakao.maps.event.addListener(marker,'click', () =>{
+              console.log("클릭시 lat lon")
+              console.log(a.lat)
+              console.log(a.lon)
+              lats = a.lat;
+              lons= a.lon;
+              getAddr(lats,lons)
+
+              if(lats != null && lons !=null){
+
+                window.open("https://map.kakao.com/link/to/"+addressname+","+lats+","+lons)
+    
+              }
+            
+            })
+          }//for 종료 
+          //list 에서  정렬 시키고 상위 3개만 뽑기 
+          
+          list.sort((a,b)=> a.distance-b.distance)
+          var besttreelist = [list[0],list[1],list[2]];
+          console.log(besttreelist,"상위 3개 리스트")
+          var one = besttreelist[0]
+          nearlat = one.lat;
+          nearlon =one.lon;
+         
+          
+
+      }//나머지 좌표 찍기 종료
+     }) 
+    } //내 위치 받아오기 종료 
+    else{
           var locPosition = new kakao.maps.LatLng(33.450701,126.570667),
           message="gps 사용불가"
           var marker = new kakao.maps.Marker({
@@ -124,61 +213,10 @@ const Map2 =() =>{
 
         infowindow.open(map,marker)
         map.setCenter(locPosition)  
-    
-      }
-
-      //중심 좌표 받아오기 
-      
-
-      //중심 좌표 얻어서 표시 
-    
-
-      // 나머지 좌표 찍기 
-      if(coords.length != 0)
-      { console.log(coords)
-        for(let i=0 ; i<= coords.length-1 ; i++ ){
-          let a = coords[i]
-          console.log(a.lat)
-          console.log(a.lon)
-          console.log(a.id)
-
-          var markerPosition = new kakao.maps.LatLng(a.lat, a.lon);
-
-          var imageSrc = require('./slowditcostomimg.png')
-          var imageSize = new kakao.maps.Size(35,49);
-          var imageOption = {offset: new kakao.maps.Point(20,49)}
-          var markerImage = new kakao.maps.MarkerImage(imageSrc,imageSize, imageOption)
-          var marker = new kakao.maps.Marker({
-            position: markerPosition,
-            image: markerImage,
-            yAnchor : 1
-          
-          });
-          marker.setMap(map);
-          console.log("setup 완료 ")
-
-
-
-          
-          //클릭 이벤트
-          kakao.maps.event.addListener(marker,'click', () =>{
-            console.log("클릭시 lat lon")
-            console.log(a.lat)
-            console.log(a.lon)
-            lats = a.lat;
-            lons= a.lon;
-            getAddr(lats,lons)
-
-            if(lats != null && lons !=null){
-
-              window.open("https://map.kakao.com/link/to/"+addressname+","+lats+","+lons)
-    
-            }
             
-          })
-        }
       }
-  },)
+
+  })
 
   useEffect(()=>{
     getUsers();
@@ -190,9 +228,13 @@ const Map2 =() =>{
       return (
         <div>
           <Header style={{position: 'fixed'}}/>
-          <div id="map" style={{width:'100vw' , height : 
-        '90vh', zIndex: 1}}></div>
-        <button onClick={()=> centermove(centerlat,centerlon)} style={{zIndex:"100" , position:"absolute", bottom:"5%" ,left:"50%",transform:"translate(-50%)" , borderRadius: "30px", height:"8%", border:"none", backgroundColor:'white'}}><div style={{color:"#4B89DC",fontWeight:"bold"}}>내위치로 이동하기</div></button>
+          <div id="map" style={{width:'100vw' , height : '90vh', zIndex: 1}}></div>
+        
+        
+      
+        <button onClick={()=> nearpoint(nearlat,nearlon) } className={styles.nearpointbutton}><div className={styles.buttonfontnear}>가장 가까운 구역 이동</div></button>
+       
+        <button onClick={()=> centermove(centerlat,centerlon)} className={styles.centerpoint}><div className={styles.buttonfont}>내위치로 이동하기</div></button>
         </div>
         
       );
