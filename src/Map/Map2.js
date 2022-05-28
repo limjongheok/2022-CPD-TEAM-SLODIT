@@ -226,15 +226,17 @@ const Map2 =() =>{
 
     
       return (
-        <div>
+        <div style={{position: "relative"}}>
           <Header style={{position: 'fixed'}}/>
           <div id="map" style={{width:'100vw' , height : '90vh', zIndex: 1}}></div>
         
+        <div className={styles.buttondiv}>
         
-      
-        <button onClick={()=> nearpoint(nearlat,nearlon) } className={styles.nearpointbutton}><div className={styles.buttonfontnear}>가장 가까운 구역 이동</div></button>
+        <button onClick={()=> nearpoint(nearlat,nearlon) } className={styles.nearpointbutton}><div className={styles.buttonfontnear}>가까운구역 이동하기</div></button>
        
-        <button onClick={()=> centermove(centerlat,centerlon)} className={styles.centerpoint}><div className={styles.buttonfont}>내위치로 이동하기</div></button>
+       <button onClick={()=> centermove(centerlat,centerlon)} className={styles.centerpoint}><div className={styles.buttonfont}>내 위치로 이동하기</div></button>
+        </div>
+       
         </div>
         
       );

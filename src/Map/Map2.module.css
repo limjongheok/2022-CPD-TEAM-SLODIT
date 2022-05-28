@@ -37,7 +37,7 @@
 .nearpointbutton{
     z-index: 100;
     position: absolute;
-    top: 10.5%;
+    top: 11%;
     left:0.2%;
     border-radius: 10px;
     border: none;
@@ -62,5 +62,5 @@
 .buttonfontnear{
     color: rgb(255, 255, 255);
     font-weight: bold;
-    font-size: 20%;
+   
 }
