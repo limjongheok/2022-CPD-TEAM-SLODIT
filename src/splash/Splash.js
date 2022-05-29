@@ -5,7 +5,8 @@ const Splash= () =>{
 
   return(
     <div>
-      <div className={styles.splashimg}><p className={styles.splashfont}>S L O W D I T</p></div>
+      <div className={styles.splashimg}><img className={styles.splashmark} src={require('./slowditsplashmark.png')}/></div>
+      
     </div>
   )
 }

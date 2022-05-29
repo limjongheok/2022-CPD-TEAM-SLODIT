@@ -7,17 +7,17 @@
     background-repeat: no-repeat;
 
 }
-.splashfont{
+
+.splashmark{
   position: absolute;
-  color: white;
-  font-weight: inherit;
-  top: 20%;
-  left: 30%;
-  transform: translate(-50%);
-  font-size: 35px;
+  width: 400px;
+  height: 400px;
+  z-index: 100;
   font-weight: bold;
-  border-bottom: solid white;
-  padding: 5px;
+  top: -8%;
+  left: 10%;
+  transform: translate(-50%);
+  font-size: 20px;
 }
 
 @media (min-width:196px) and (max-width:767px) {
@@ -29,12 +29,14 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .splashfont{
+  .splashmark{
     position: absolute;
-    color: white;
+    z-index: 100;
     font-weight: bold;
-    top: 30%;
-    left: 50%;
+    top: 20%;
+    left: 47%;
+    width: 240px;
+    height: 240px;
     transform: translate(-50%);
     font-size: 20px;
   }

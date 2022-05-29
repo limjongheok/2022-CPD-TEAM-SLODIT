@@ -13,7 +13,7 @@ class App extends React.Component {
   componentDidMount(){
     setTimeout(()=>{
       this.setState({isLoading: false});
-    },3000)
+    },4000)
   }
   render(){
     const {isLoading} = this.state;
