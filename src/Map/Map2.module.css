@@ -1,5 +1,10 @@
 .Maps {
-    position:absolute;
+    width: 100vw;
+    height: 90vh;
+    z-index: 1;
+    @supports(-webkit-touch-callout:none){
+        min-height: -webkit-touch-availale;
+    }
 }
 
 .Maplistdiv{

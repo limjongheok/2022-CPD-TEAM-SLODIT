@@ -3,6 +3,9 @@
     display:block;
     height: 10vh;
     width: 100%;
+    @supports(-webkit-touch-callout:none){
+        min-height: -webkit-touch-availale;
+    }
 }
 .Header_line {
     position: absolute;
