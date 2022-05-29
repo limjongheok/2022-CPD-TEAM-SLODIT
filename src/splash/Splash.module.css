@@ -33,10 +33,10 @@
     position: absolute;
     z-index: 100;
     font-weight: bold;
-    top: 20%;
-    left: 47%;
-    width: 240px;
-    height: 240px;
+    top: 8%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
     transform: translate(-50%);
     font-size: 20px;
   }
