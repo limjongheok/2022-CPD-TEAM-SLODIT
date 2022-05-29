@@ -6,26 +6,9 @@ import Header from '../Header/Header'
 const { kakao } = window;
 
 
-const Map2 =() =>{
+const Map2 =(props) =>{
 
-  const [coords, setCoords]=useState([]);
-
-  
-  
- 
-  const userCollectionRef = collection(db,"users");
-
-  //주소 이동 함수 
-
-
-  // firestore  api 가져오기 
-  const getUsers = async() =>{
-    const data = await getDocs(userCollectionRef);
-    setCoords(data.docs.map((doc)=>({...doc.data(),id:doc.id})))
-      
-  }
-
-
+  const {coords} = props;
   
 
 
@@ -69,6 +52,7 @@ const Map2 =() =>{
    }
 
   useEffect(()=>{
+    console.log(coords)
     //처음 map 그리기 
     // id 정의 및 div id 로  그리기 
     const container = document.getElementById("map");
@@ -218,10 +202,7 @@ const Map2 =() =>{
 
   })
 
-  useEffect(()=>{
-    getUsers();
-    
-  },[])
+ 
 
 
     
