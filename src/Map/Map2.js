@@ -228,7 +228,7 @@ const Map2 =() =>{
       return (
         <div style={{position: "relative"}}>
           <Header style={{position: 'fixed'}}/>
-          <div id="map" style={{width:'100vw' , height : '90vh', zIndex: 1}}></div>
+          <div id="map" style={{width:'100vw' , height : '90vh',zIndex: 1}}></div>
         
         <div className={styles.buttondiv}>
         
