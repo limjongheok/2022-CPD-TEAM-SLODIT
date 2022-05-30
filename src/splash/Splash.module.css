@@ -7,11 +7,19 @@
     background-repeat: no-repeat;
 
 }
+.splashfilter{
+  position: absolute;
+  z-index: 50;
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.3;
+}
 
 .splashmark{
   position: absolute;
-  width: 400px;
-  height: 400px;
+  width: 50vh;
+  height: 50vh;
   z-index: 100;
   font-weight: bold;
   top: -8%;
@@ -33,10 +41,10 @@
     position: absolute;
     z-index: 100;
     font-weight: bold;
-    top: 8%;
+    top: 15%;
     left: 50%;
-    width: 300px;
-    height: 300px;
+    width: 50vh;
+    height: 50vh;
     transform: translate(-50%);
     font-size: 20px;
   }
