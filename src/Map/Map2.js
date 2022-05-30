@@ -63,6 +63,7 @@ const Map2 =(props) =>{
        
 
         const map = new kakao.maps.Map(container, options);
+        map.setMaxLevel(8);// 최대 축소 레벨
 
         a=map;
         
@@ -83,8 +84,8 @@ const Map2 =(props) =>{
 
               // 내 위치 이미지 마커 
               var imageSrc = require('./slowditmyloc.png')
-              var imageSize = new kakao.maps.Size(30, 30); // 마커이미지의 크기입니다
-              var imageOption = {offset: new kakao.maps.Point(23, 0)}; 
+              var imageSize = new kakao.maps.Size(23, 23); // 마커이미지의 크기입니다
+              var imageOption = {offset: new kakao.maps.Point(8, 20)}; 
               var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
               
               var locPosition = new kakao.maps.LatLng(lat,lon);
@@ -200,7 +201,7 @@ const Map2 =(props) =>{
             
       }
 
-  })
+  },[])
 
  
 
