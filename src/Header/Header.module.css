@@ -1,0 +1,124 @@
+.Header_main {
+    position: relative;
+  
+    height: 10vh;
+    width: 100%;
+    background-color: rgb(0,76,32);
+    @supports(-webkit-touch-callout:none){
+        min-height: -webkit-touch-availale;
+    }
+}
+
+
+
+.Header_flexbox{
+    position: absolute;
+    left: -10%;
+    top:  15%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    width: 100%;
+    height:100%
+}
+
+.Header_font{
+    position: absolute;
+    top: 8%;
+    font-weight: bold;
+    color: white;
+    left: 55%;
+    font-size: 20px;
+}
+.Header_logo{
+    position: absolute;
+    width:40px;
+    height:30px;
+    
+    
+    
+}
+
+@media (min-width:196px) and (max-width:572px) {
+
+
+    .Header_main {
+        position: relative;
+        display:block;
+        height: 10vh;
+        width: 100%;
+        background-color: rgb(0,76,32);
+        @supports(-webkit-touch-callout:none){
+            min-height: -webkit-touch-availale;
+        }
+    }
+    .Header_logo{
+        position: absolute;
+        width: 10%;
+        height: 60%;
+        top: 5%;
+    }
+    .Header_flexbox{
+        position: absolute;
+        left: -20%;
+        top: 15%;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        width: 100%;
+        height : 100%
+    }
+
+    .Header_font{
+        position: absolute;
+        top: 20%;
+        font-weight: inherit;
+        color: white;
+        left: 60%;
+        font-size: 20px;
+    }
+
+
+    
+}
+@media (min-width:573px) and (max-width:1000px) {
+
+
+    .Header_main {
+        position: relative;
+        display:block;
+        height: 10vh;
+        width: 100%;
+        background-color: rgb(0,76,32);
+        @supports(-webkit-touch-callout:none){
+            min-height: -webkit-touch-availale;
+        }
+    }
+    .Header_flexbox{
+        position: absolute;
+        left: -13%;
+        top: 20%;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .Header_logo{
+        position: absolute;
+        width:50px;
+         height:60px;
+    }
+    .Header_font{
+        position: absolute;
+        top: 8%;
+        font-weight: inherit;
+        color: white;
+        left: 58%;
+        font-size: 30px;
+    }
+
+
+    
+}

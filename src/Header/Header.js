@@ -1,5 +1,5 @@
 import React from "react";
-import './Header.css'
+import styles from './Header.module.css'
 
 
 
@@ -7,11 +7,13 @@ const Header = () =>{
 
     return(
         <div>
-            <div className="Header_main">
-                <div className="Header_line"></div>   
-                <div className="Headers" >SLOWDIT</div>
-                <img  src={require('./slowditicon.png')} alt="log" className="Header_log" />
-                <button className="Header_button"><div className="Header_button_font">App</div></button>
+            <div className={styles.Header_main}>
+                <div className={styles.Header_flexbox}>
+                <div className={styles.Header_font} >S L O W D I T</div>
+                <img  src={require('./slowditiconwhite.png')} alt="log" className={styles.Header_logo}></img>
+                </div> 
+                
+                
             </div>
         </div>
         

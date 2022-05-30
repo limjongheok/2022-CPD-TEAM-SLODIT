@@ -7,79 +7,88 @@
     }
 }
 
-.Maplistdiv{
 
-    position: absolute;
-    z-index: 100;
-    top: 10% ;
-    background-color : rgba(255, 255, 255, 0.5);
-    
-}
-.Map2listfont {
 
-    text-align: center;
-    margin: 10px;
-    font-weight: bold;
-    border-bottom: 2px solid;
-}
-.Map2ul {
-    list-style: none ; 
-    font-size: 13px;
-    color: black;
-    padding: 0;
-    margin: 10px;
-    text-align: center;
-}
-.Map2li{
-    margin: 5px;
-    padding: 2px;
-    border-bottom: 1px solid;
-}
-.Map2lilast{
-    padding: 2px;
-    border-bottom: 1px solid;
-}
-.nearpointbutton{
-    z-index: 100;
+.buttondiv{
     position: absolute;
-    top: 13%;
-    left:0.2%;
-    border-radius: 10px;
-    border: none;
-    background-color: #4B89DC;
-    height: 8%;
-}
-.centerpoint{
+    display: flex;
+    flex-direction: row;
     z-index: 100;
-    position: absolute;
-    bottom: 5%;
+    bottom: 10%;
     left: 50%;
     transform: translate(-50%);
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    height:8%;
+    
+}
+.nearpointbutton{
+    margin-right: 5%;
     border-radius: 30px;
-    height: 8%;
+    background-color:white;
     border: none;
-    background-color: rgb(255, 255, 255);
+
+}
+.centerpoint{
+    border-radius: 30px;
+    background-color:rgb(0,76,32);
+    border: none;
 }
 .buttonfont{
-    color: #4B89DC;
-    font-weight: bold;
+    margin: 1px;
+    color: white;
+    font-weight: inherit;
+    font-size: 16px;
 }
 .buttonfontnear{
-    color: rgb(255, 255, 255);
-    font-weight: bold;
+    color: rgb(0,76,32);
+    font-weight: inherit;
+    font-size: 15px;
    
 }
 
-@media (min-width:196px) and (max-width:767px) {
-    .nearpointbutton{
-        z-index: 100;
+@media (min-width:196px) and (max-width:915px) {
+    .buttondiv{
         position: absolute;
-        top: 11%;
-        left:0.2%;
-        border-radius: 10px;
-        border: none;
-        background-color: #4B89DC;
-        height: 6%;
+        display: flex;
+        flex-direction: row;
+        z-index: 100;
+        bottom: 10%;
+        left: 51%;
+        transform: translate(-50%);
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        height:8%;
+        
     }
+    .nearpointbutton{
+        margin-right: 4%;
+        border-radius: 30px;
+        background-color:white;
+        border: none;
+    
+    }
+    .centerpoint{
+        border-radius: 30px;
+        background-color:rgb(0,76,32);
+        border: none;
+    }
+    .buttonfont{
+        margin: 1px;
+        color: white;
+        font-weight: inherit;
+        font-size: 15px;
+        word-spacing: 3px;
+    }
+    .buttonfontnear{
+        color: rgb(0,76,32);
+        font-weight: inherit;
+        font-size: 15px;
+       
+       
+    }
+    
     
 }
