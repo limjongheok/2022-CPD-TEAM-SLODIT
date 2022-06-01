@@ -24,16 +24,16 @@
 
 .Header_font{
     position: absolute;
-    top: 8%;
+    top: 15%;
     font-weight: bold;
     color: white;
-    left: 55%;
+    left: 54%;
     font-size: 20px;
 }
 .Header_logo{
     position: absolute;
-    width:40px;
-    height:30px;
+    width:50px;
+    height:70%;
     
     
     
