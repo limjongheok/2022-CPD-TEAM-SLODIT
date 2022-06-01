@@ -72,10 +72,11 @@
     .Header_font{
         position: absolute;
         top: 20%;
-        font-weight: inherit;
+        font-weight: bold;
         color: white;
         left: 60%;
         font-size: 20px;
+        word-spacing: 2px;
     }
 
 
