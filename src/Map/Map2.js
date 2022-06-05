@@ -1,14 +1,20 @@
-import {collection, doc, getDocs} from 'firebase/firestore';
-import {db} from '../firebase'
 import React, {useEffect ,useState} from "react";
 import styles from './Map2.module.css';
 import Header from '../Header/Header'
+import { getDatabase, ref, onValue , child,get} from "firebase/database";
+import {app} from '../firebase'
 const { kakao } = window;
 
 
 const Map2 =(props) =>{
 
   const {coords} = props;
+  const [count, setCount] = useState();
+  const [centerlat, setCenterlat] = useState();
+  const [centerlon, setCenterlon]= useState();
+  const [nearlat, setnearlat] = useState();
+  const [nearlon, setnearlon] = useState();
+  const [kmap, setKmap] = useState();
   
 
 
@@ -29,12 +35,12 @@ const Map2 =(props) =>{
   }
    var lats = null; //클릭시 카카오 맵 이동시 필요
    var lons = null;
-   let centerlat; //중앙 좌표 내위치로 이동시 필요
-   var centerlon;
-   var a ; //카카오map
+   //let centerlat; //중앙 좌표 내위치로 이동시 필요
+   //var centerlon;
+   //var a ; //카카오map
    var list = []; // 장소 거리를 담을 리스트
-   let nearlat; // 가장 근처 위도 경도
-   let nearlon;
+   //let nearlat; // 가장 근처 위도 경도
+   //let nearlon;
    
    
 
@@ -42,16 +48,19 @@ const Map2 =(props) =>{
    function centermove(centerlat,centerlon){
 
     var moveLatLon = new kakao.maps.LatLng(centerlat,centerlon)
-    a.panTo(moveLatLon);   
+    kmap.panTo(moveLatLon);   
     
    }
    function nearpoint(nearlat, nearlon){
      var moveLatLon = new kakao.maps.LatLng(nearlat,nearlon)
-     a.panTo(moveLatLon)
+     kmap.panTo(moveLatLon)
 
    }
 
   useEffect(()=>{
+
+
+
     console.log(coords)
     //처음 map 그리기 
     // id 정의 및 div id 로  그리기 
@@ -65,7 +74,8 @@ const Map2 =(props) =>{
         const map = new kakao.maps.Map(container, options);
         map.setMaxLevel(8);// 최대 축소 레벨
 
-        a=map;
+        setKmap(map);
+        //a=map;
         
 
         // 스카이뷰및 컨트롤러 
@@ -79,8 +89,8 @@ const Map2 =(props) =>{
           navigator.geolocation.getCurrentPosition((position)=>{
               var lat = position.coords.latitude;
               var lon = position.coords.longitude;
-              centerlat = lat;
-              centerlon = lon;
+              setCenterlat(lat);
+              setCenterlon(lon);
 
               // 내 위치 이미지 마커 
               var imageSrc = require('./slowditmyloc.png')
@@ -148,6 +158,29 @@ const Map2 =(props) =>{
             list.push({distance : distance , lat: a.lat, lon: a.lon})
           
 
+            //data 베이스에서 가져온 값 인포메시지 뛰우기
+            const dbref = ref(getDatabase(app))
+            var data;
+            get(child(dbref,a.id+"/count")).then((snapshot)=>{
+              if(snapshot.exists()){
+                data = snapshot.val();
+                if(data != null){
+                  setCount(data)
+                
+                console.log(data)
+                  var iwContent = '<div style="padding:0px; width:152px; height: 25px; text-align: center; background: rgb(120,190,100); border:4px solid rgb(0,76,32); background-color:hsl(71,98,136); color: white; font-weight: bold;">'+data+'</div>'
+                  var infowindow = new kakao.maps.InfoWindow({
+                  position: markerPosition,
+                  content : iwContent
+                });
+                infowindow.open(map,marker);
+                map.setCenter(locPosition)
+                }
+
+              }
+            })
+            
+
 
           
             //클릭 이벤트
@@ -166,6 +199,11 @@ const Map2 =(props) =>{
               }
             
             })
+
+            // 인포메시지 아두이노 연동 db로 값 받아 뛰우기 
+            
+
+
           }//for 종료 
           //list 에서  정렬 시키고 상위 3개만 뽑기 
           
@@ -173,8 +211,9 @@ const Map2 =(props) =>{
           var besttreelist = [list[0],list[1],list[2]];
           console.log(besttreelist,"상위 3개 리스트")
           var one = besttreelist[0]
-          nearlat = one.lat;
-          nearlon =one.lon;
+          setnearlat(one.lat)
+          setnearlon(one.lon)
+          
          
           
 
