@@ -159,25 +159,7 @@ const Map2 =(props) =>{
           
 
             //data 베이스에서 가져온 값 인포메시지 뛰우기
-            const dbref = ref(getDatabase(app))
-            get(child(dbref,a.id+"/count")).then((snapshot)=>{
-              if(snapshot.exists()){
-                var data = snapshot.val();
-                if(data != null){
-                  setCount(data)
-                
-                console.log(data)
-                  var iwContent = '<div style="padding:0px; width:152px; height: 25px; text-align: center; background: rgb(120,190,100); border:4px solid rgb(0,76,32); background-color:hsl(71,98,136); color: white; font-weight: bold;">'+data+'</div>'
-                  var infowindow = new kakao.maps.InfoWindow({
-                  position: markerPosition,
-                  content : iwContent
-                });
-                infowindow.open(map,marker);
-                map.setCenter(locPosition)
-                }
-
-              }
-            })
+            
             
 
 
