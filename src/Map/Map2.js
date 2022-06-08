@@ -6,9 +6,10 @@ import {app} from '../firebase'
 const { kakao } = window;
 
 
-const Map2 =(props) =>{
+const Map2 =({coords, iw}) =>{
 
-  const {coords} = props;
+  
+
   const [count, setCount] = useState();
   const [centerlat, setCenterlat] = useState();
   const [centerlon, setCenterlon]= useState();
@@ -62,6 +63,7 @@ const Map2 =(props) =>{
 
 
     console.log(coords)
+    console.log(iw)
     //처음 map 그리기 
     // id 정의 및 div id 로  그리기 
     const container = document.getElementById("map");
@@ -133,6 +135,23 @@ const Map2 =(props) =>{
           
             });
             marker.setMap(map);
+            
+            //data 베이스에서 가져온 값 인포메시지 뛰우기
+            
+            //data 베이스에서 가져온 값 인포메시지 뛰우기
+            var idin = ''+a.id +''
+            console.log(idin)
+            console.log(iw[idin]['count'])
+            var data = iw[idin]['count']
+            var iwContent = '<div style="padding:0px; width:152px; height: 25px; text-align: center; background: rgb(120,190,100); border:4px solid rgb(0,76,32); background-color:hsl(71,98,136); color: white; font-weight: bold;">'+data+'</div>'
+
+            var infowindow = new kakao.maps.InfoWindow({
+              position: markerPosition,
+              content : iwContent
+            });
+          
+            infowindow.open(map,marker);
+            map.setCenter(locPosition)
         
 
             //폴리 라인 그리기 
@@ -158,8 +177,6 @@ const Map2 =(props) =>{
             list.push({distance : distance , lat: a.lat, lon: a.lon})
           
 
-            //data 베이스에서 가져온 값 인포메시지 뛰우기
-           
             
 
 
