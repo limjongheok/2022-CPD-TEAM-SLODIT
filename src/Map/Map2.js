@@ -27,8 +27,7 @@ const Map2 =({coords, iw}) =>{
     let coord = new kakao.maps.LatLng(lats,lons);
     let callback = function(result,status){
       if(status === kakao.maps.services.Status.OK){
-        console.log(result)
-        console.log(result[0].address.address_name);
+       
         addressname = result[0].address.address_name;
       }
     }
@@ -61,9 +60,6 @@ const Map2 =({coords, iw}) =>{
   useEffect(()=>{
 
 
-
-    console.log(coords)
-    console.log(iw)
     //처음 map 그리기 
     // id 정의 및 div id 로  그리기 
     const container = document.getElementById("map");
@@ -116,11 +112,10 @@ const Map2 =({coords, iw}) =>{
 
         // 나머지 좌표 찍기 
         if(coords.length != 0)
-        { console.log(coords)
+        { 
           for(let i=0 ; i<= coords.length-1 ; i++ ){
             let a = coords[i]
-            console.log(a.lat,a.lon , "나머지 좌표 위도 , 경도")
-            console.log(a.id ,"지역")
+            
 
             var markerPosition = new kakao.maps.LatLng(a.lat, a.lon);
 
@@ -153,12 +148,10 @@ const Map2 =({coords, iw}) =>{
             });
             polyline.setMap(null);
             var distance = polyline.getLength();
-            console.log(distance,"distance");
-
-            console.log(centerlat,"중앙좌표")
+           
             ////폴리라인 그리기 끝 
 
-            console.log("setup 완료 ")
+           
             list.push({distance : distance , lat: a.lat, lon: a.lon})
           
 
@@ -168,9 +161,7 @@ const Map2 =({coords, iw}) =>{
           
             //클릭 이벤트
             kakao.maps.event.addListener(marker,'click', () =>{
-              console.log("클릭시 lat lon")
-              console.log(a.lat)
-              console.log(a.lon)
+             
               lats = a.lat;
               lons= a.lon;
               getAddr(lats,lons)
@@ -192,7 +183,7 @@ const Map2 =({coords, iw}) =>{
           
           list.sort((a,b)=> a.distance-b.distance)
           var besttreelist = [list[0],list[1],list[2]];
-          console.log(besttreelist,"상위 3개 리스트")
+         
           var one = besttreelist[0]
           setnearlat(one.lat)
           setnearlon(one.lon)
