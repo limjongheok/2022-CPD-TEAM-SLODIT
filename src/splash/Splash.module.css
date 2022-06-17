@@ -50,3 +50,27 @@
   }
   
 }
+
+
+@media (min-width:573px) and (max-width:1024px) {
+  .splashimg{
+    position: relative;
+    height: 100vh;
+    background: center;
+    background-image: url('./slowditmain.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .splashmark{
+    position: absolute;
+    z-index: 100;
+    font-weight: bold;
+    top: 15%;
+    left: 50%;
+    width: 50vh;
+    height: 50vh;
+    transform: translate(-50%);
+    font-size: 20px;
+  }
+  
+}
